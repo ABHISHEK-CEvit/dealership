@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Dealership</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 75px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .dealers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .dealer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .dealer-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .dealer-card h2 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .dealer-card p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .dealer-id {
+            display: inline-block;
+            background: #e5e7eb;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 16px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            margin-top: 60px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .dealers {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .dealers {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Cars Dealership</div>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/about/">About Us</a>
+        <a href="/contact/">Contact Us</a><a href="/reviews/">All Reviews</a>
+
+        {% if user.is_authenticated %}
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+        {% endif %}
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Discover Certified Dealerships</h1>
+    <p>Find trusted dealerships and explore their customer reviews.</p>
+</section>
+
+<div class="container">
+
+    <h2 class="section-title">Our Dealerships</h2>
+
+    <div class="dealers">
+
+        {% for dealer in dealers %}
+
+        <div class="dealer-card">
+
+            <span class="dealer-id">
+                Dealer #{{ dealer.dealer_id }}
+            </span>
+
+            <h2>{{ dealer.name }}</h2>
+
+            <p>
+                {{ dealer.address }}<br>
+                {{ dealer.city }}, {{ dealer.state }} {{ dealer.zip }}
+            </p>
+
+            <a class="btn" href="{% url 'dealer_reviews' dealer.dealer_id %}">
+                View Dealer
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <p>No dealerships available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Cars Dealership. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

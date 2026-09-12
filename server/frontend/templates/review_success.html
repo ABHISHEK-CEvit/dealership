@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Submitted</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            color: #17233c;
+        }
+
+        .box {
+            max-width: 650px;
+            margin: 50px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,.1);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #17233c;
+        }
+
+        .success {
+            background: #e6f7ef;
+            border: 1px solid #9de2bf;
+            padding: 15px;
+            border-radius: 7px;
+            margin: 25px 0;
+            color: #087443;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .stars {
+            font-size: 28px;
+            margin: 10px 0 20px;
+        }
+
+        .sentiment {
+            display: inline-block;
+            background: #eee;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 10px 0 20px;
+        }
+
+        .info {
+            margin: 12px 0;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #159bd7;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .button:hover {
+            background: #0d82b8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Review Dealership</h1>
+
+    <div class="success">
+        <strong>✓ Review Submitted Successfully!</strong><br>
+        Thank you for your feedback. Your review is now live and associated with your account.
+    </div>
+
+    <div class="review-card">
+
+        <h2>{{ review.dealer.name }}</h2>
+
+        <div class="stars">
+            {% if review.rating >= 1 %}★{% endif %}
+            {% if review.rating >= 2 %}★{% endif %}
+            {% if review.rating >= 3 %}★{% endif %}
+            {% if review.rating >= 4 %}★{% endif %}
+            {% if review.rating >= 5 %}★{% endif %}
+            <span style="font-size:18px;">({{ review.rating }}/5)</span>
+        </div>
+
+        <p>
+            <strong>Review:</strong>
+        </p>
+
+        <p>{{ review.review }}</p>
+
+        <div class="sentiment">
+            {% if review.sentiment %}
+                {{ review.sentiment }}
+            {% else %}
+                PENDING
+            {% endif %}
+        </div>
+
+        <div class="info">
+            <strong>Dealership:</strong>
+            {{ review.dealer.name }}
+        </div>
+
+        <div class="info">
+            <strong>Reviewer:</strong>
+            {{ review.user.username }}
+        </div>
+
+    </div>
+
+    <a class="button"
+       href="{% url 'dealer_reviews' review.dealer.dealer_id %}">
+        View Dealership Page
+    </a>
+
+</div>
+
+</body>
+</html>

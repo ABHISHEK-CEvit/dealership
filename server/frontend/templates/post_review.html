@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Review</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            color: #17233c;
+        }
+
+        .box {
+            max-width: 650px;
+            margin: 45px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 160px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .user {
+            background: #eef6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        a {
+            color: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Post Review</h1>
+
+    <h2>{{ dealer.name }}</h2>
+
+    <div class="user">
+        Logged in as:
+        <strong>{{ request.user.username }}</strong>
+    </div>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <label>Rating</label>
+
+        <select name="rating">
+            <option value="5">★★★★★ - 5</option>
+            <option value="4">★★★★☆ - 4</option>
+            <option value="3">★★★☆☆ - 3</option>
+            <option value="2">★★☆☆☆ - 2</option>
+            <option value="1">★☆☆☆☆ - 1</option>
+        </select>
+
+        <label>Review Comments</label>
+
+        <textarea
+            name="review"
+            required
+            placeholder="Write your review here..."
+        ></textarea>
+
+        <button type="submit">
+            Post Review
+        </button>
+
+    </form>
+
+    <p>
+        <a href="{% url 'dealer_reviews' dealer.dealer_id %}">
+            Back to Reviews
+        </a>
+    </p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Cars Dealership</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        nav a.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 700px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Cars Dealership</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/about/">About Us</a>
+        <a href="/contact/" class="active">Contact Us</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Contact Us</h1>
+
+    <div class="contact-grid">
+
+        <div class="card">
+            <h2>📍 Address</h2>
+            <p>
+                Cars Dealership<br>
+                123 Business Avenue<br>
+                Chicago, IL 60601
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📞 Phone</h2>
+            <p>+1 (800) 555-0123</p>
+            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+        </div>
+
+        <div class="card">
+            <h2>✉️ Email</h2>
+            <p>support@carsdealership.com</p>
+            <p>sales@carsdealership.com</p>
+        </div>
+
+        <div class="card">
+            <h2>🌐 Customer Support</h2>
+            <p>
+                Contact our support team for questions about dealerships,
+                vehicles, reviews, or your account.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

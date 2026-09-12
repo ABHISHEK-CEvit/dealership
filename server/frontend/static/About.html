@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Cars Dealership</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .member {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .member h2 {
+            margin-bottom: 5px;
+        }
+
+        .role {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .email {
+            color: #555;
+        }
+
+        @media (max-width: 800px) {
+            .team {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Cars Dealership</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/about/">About Us</a>
+        <a href="/contact/">Contact Us</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>About Us</h1>
+
+    <p class="intro">
+        We connect customers with trusted dealerships and help make
+        the car-buying experience simple and reliable.
+    </p>
+
+    <div class="team">
+
+        <div class="member">
+            <div class="avatar">AS</div>
+            <h2>Abhishek Sharma</h2>
+            <p class="role">Founder & CEO</p>
+            <p>Leads the platform and focuses on creating a trusted dealership experience.</p>
+            <p class="email">abhishek@carsdealership.com</p>
+        </div>
+
+        <div class="member">
+            <div class="avatar">PR</div>
+            <h2>Priya Rao</h2>
+            <p class="role">Operations Manager</p>
+            <p>Manages dealership partnerships and ensures quality customer service.</p>
+            <p class="email">priya@carsdealership.com</p>
+        </div>
+
+        <div class="member">
+            <div class="avatar">RK</div>
+            <h2>Rahul Kapoor</h2>
+            <p class="role">Technology Lead</p>
+            <p>Maintains the application and develops features for customers and dealers.</p>
+            <p class="email">rahul@carsdealership.com</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

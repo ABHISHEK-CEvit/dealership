@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>All Dealer Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fa;
+            color: #17233b;
+            margin: 0;
+        }
+
+        .box {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-size: 22px;
+        }
+
+        .sentiment {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            background: #e5e7eb;
+            margin-top: 8px;
+        }
+
+        a {
+            color: #0788c5;
+            text-decoration: none;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #2563eb;
+            color: white;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>All Dealer Reviews</h1>
+
+    {% for review in reviews %}
+
+    <div class="card">
+
+        <h2>{{ review.dealer.name }}</h2>
+
+        <p>
+            <strong>Reviewer:</strong>
+            {{ review.user.username }}
+        </p>
+
+        <div class="stars">
+            {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}
+                    ★
+                {% else %}
+                    ☆
+                {% endif %}
+            {% endfor %}
+            <span style="font-size:16px;">
+                ({{ review.rating }}/5)
+            </span>
+        </div>
+
+        <p>
+            <strong>Review:</strong>
+        </p>
+
+        <p>{{ review.review }}</p>
+
+        {% if review.sentiment %}
+            <span class="sentiment">
+                Sentiment: {{ review.sentiment }}
+            </span>
+        {% else %}
+            <span class="sentiment">
+                Sentiment: Pending
+            </span>
+        {% endif %}
+
+        <br>
+
+        <a class="button"
+           href="{% url 'dealer_reviews' review.dealer.dealer_id %}">
+            View Dealership
+        </a>
+
+    </div>
+
+    {% empty %}
+
+    <div class="card">
+        <p>No reviews have been posted yet.</p>
+    </div>
+
+    {% endfor %}
+
+    <p>
+        <a href="{% url 'home' %}">← Back to Home</a>
+    </p>
+
+</div>
+
+</body>
+</html>

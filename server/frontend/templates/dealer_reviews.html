@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Dealer Reviews</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            color: #17233c;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .header, .review {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,.08);
+        }
+
+        .header h1 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            margin-left: 15px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-size: 22px;
+            margin: 8px 0;
+        }
+
+        .sentiment {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .positive {
+            color: #166534;
+            background: #dcfce7;
+        }
+
+        .negative {
+            color: #991b1b;
+            background: #fee2e2;
+        }
+
+        .neutral {
+            color: #92400e;
+            background: #fef3c7;
+        }
+
+        .review-text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>{{ dealer.name }}</h1>
+
+        <p>
+            {{ dealer.address }},
+            {{ dealer.city }},
+            {{ dealer.state }}
+            {{ dealer.zip }}
+        </p>
+
+        <a class="btn"
+           href="{% url 'post_review' dealer.dealer_id %}">
+            Post Review
+        </a>
+
+        <a class="back" href="/">
+            Back Home
+        </a>
+
+    </div>
+
+    <h2>Customer Reviews</h2>
+
+    {% for review in reviews %}
+
+        <div class="review">
+
+            <strong>{{ review.user.username }}</strong>
+
+            <div class="stars">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}
+                        ★
+                    {% else %}
+                        ☆
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <p class="review-text">
+                {{ review.review }}
+            </p>
+
+            {% if review.sentiment == "Positive" %}
+
+                <span class="sentiment positive">
+                    Positive
+                </span>
+
+            {% elif review.sentiment == "Negative" %}
+
+                <span class="sentiment negative">
+                    Negative
+                </span>
+
+            {% elif review.sentiment == "Neutral" %}
+
+                <span class="sentiment neutral">
+                    Neutral
+                </span>
+
+            {% endif %}
+
+        </div>
+
+    {% empty %}
+
+        <p>No reviews yet.</p>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
